@@ -9,7 +9,7 @@ from typing import Callable
 
 redis_store = redis.Redis()
 '''
-A module-level Redis instance.
+It is a module-level Redis instance.
 '''
 
 
@@ -20,7 +20,7 @@ def data_cacher(method: Callable) -> Callable:
     @wraps(method)
     def invoker(url) -> str:
         '''
-        A wrapper function for caching the output.
+        It is a wrapper function for caching the output.
         '''
         redis_store.incr(f'count:{url}')
         result = redis_store.get(f'result:{url}')
